@@ -63,13 +63,17 @@ function transform(opts, cb) {
     return first; 
   }
 
+  // set up input stream
   stream = ast.parser(opts.input);
 
+  // inject custom stream transformations
   for(i = 0;i < streams.length;i++) {
     stream = stream.pipe(streams[i]); 
   }
-  
-  stream.pipe(ast.stringify())
+ 
+  // set up output stream
+  stream
+    .pipe(ast.stringify())
     .pipe(opts.output);
 
   if(cb) {

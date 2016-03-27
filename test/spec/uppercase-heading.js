@@ -48,4 +48,31 @@ describe('mktransform:', function() {
     })
   });
 
+  it('should transform custom stream w/ callback', function(done) {
+    var source = 'test/fixtures/headings.md'
+      , target = 'target/headings.json.log'
+      , data = ast.parse('' + fs.readFileSync(source))
+
+    // mock file for correct relative path
+    // mkcat normally injects this info
+    data.file = source;
+
+    var input = ast.serialize(data)
+      , output = fs.createWriteStream(target)
+      , opts = {
+          input: input,
+          output: output,
+          transforms: [upper]
+        };
+    
+    function onFinish() {
+      var result = utils.result(target);
+      assert(result);
+      done();
+    }
+
+    mktransform(opts, onFinish);
+
+  });
+
 });
