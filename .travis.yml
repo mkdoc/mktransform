@@ -1,0 +1,22 @@
+language: node_js
+sudo: false
+branches:
+  except:
+    - develop
+script: npm run cover
+node_js:
+  - '4.1'
+  - '4.0'
+  - '0.12'
+  - stable
+after_success:
+  - npm run coveralls
+deploy:
+  provider: npm
+  email: freeformsystems@gmail.com
+  api_key:
+    secure: Rwy3ZAKUXvSW6B6fRM+Mi4VCxY4LoAKxr84NRWcPZZPsBUWPNffENbLH89qkAUo4SlxIU3WWTWHbNM8y4U8NAVXULtFxVVfSzoTFHzGTfwCTUrF6taV7wRQBqMFrinuYPq5GZ0aXaNYQGGcMhmXv7EJfXYMa4T8jz4Gz7dLXA/jSUgsshC1GPeZOoVVHGsFQvx9ubQhDQX9M49pXc/NSZ0PDK9epjMqmQKnn+onJMwA+f7nSAhQhcnkh9mgv9XK6pUfZyRlv6hE3CqzAipqxsDQ9ShLpP11vTLOp55fJa5v2cVLbnjF76Xy509VevefbvSFbvmWhGwkK3cURWl7qjnZcRakd6mHVJG1PpqeP9yNZ0PnLAkmlWWoqdyrkM3eW2hL5Y+7oZvrCSxAz8UeXpj+jpCf4M+dO5i+o71OjejShEnfcej+Ci9wnXnBjAQdl528ZlTCIlPEYKjgAxy9nN4khwtKaLnwwLOqO9MfK9CdEBawShlaDqfKGbK+YJqVGxLhXpDDy1Rce0AT/ktSTJTJmstnr2tyAqe0t1kITvbsPUzWMlys1QvTb/5N2Qn1HxTS12+bfz/C2MDakC9FkI+35CvbGYuXp4VB+c550FhfbEiDdmdSCJUNY3+vEivxJoDNi7dHFufB08bJTgQ+oeHLPYphYhEFlXHAKS5cwVm0=
+  on:
+    tags: true
+    repo: mkdoc/mklevel
+    node: '4.1'
