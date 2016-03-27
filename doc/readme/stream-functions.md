@@ -6,7 +6,7 @@ A stream function has the signature:
 function(through, ast)
 ```
 
-It is passed the [through][] module so you can easily create stream transform classes and [ast][mkast] so you may easily inspect nodes. The function *must* return a transform stream subclass.
+It is passed the [through][] module so you can easily create stream transform classes and [ast][mkast] so you may easily inspect nodes. The function **must** return a transform stream subclass.
 
 The input and output data should always be abstract syntax tree nodes.
 
