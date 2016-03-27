@@ -22,7 +22,7 @@ And pass in the transform function:
 
 <? @source {javascript=s/\.\.\/index/mktransform/gm} usage.js ?>
 
-<? @include {=readme} example.md help.md ?>
+<? @include {=readme} example.md stream-functions.md help.md ?>
 
 <? @exec mkapi index.js --title=API --level=2 ?>
 <? @include {=readme} license.md links.md ?>
