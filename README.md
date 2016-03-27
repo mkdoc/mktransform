@@ -50,6 +50,7 @@ function upper(through, ast) {
     this.push(chunk);
     cb();
   }
+
   return through.transform(transform);
 }
 
