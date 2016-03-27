@@ -22,7 +22,7 @@ function assert(result) {
 
 describe('mktransform:', function() {
   
-  it('should transform with custom stream', function(done) {
+  it('should transform custom stream w/ transforms array', function(done) {
     var source = 'test/fixtures/headings.md'
       , target = 'target/headings.json.log'
       , data = ast.parse('' + fs.readFileSync(source))
