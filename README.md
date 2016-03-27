@@ -204,7 +204,7 @@ to the output stream, in this instance you may pass a callback function
 which is added as a listener for the `error` and `finish` events on the
 output stream; the output stream is returned.
 
-Returns an output stream.
+Returns an output stream or array of streams.
 
 * `opts` Function|Array|Object processing options.
 * `cb` Function callback function.

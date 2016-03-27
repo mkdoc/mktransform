@@ -43,7 +43,7 @@ var through = require('through3')
  *  @throws TypeError if the return value is not a function.
  *  @throws TypeError if the stream instance has no pipe function.
  *
- *  @returns an output stream.
+ *  @returns an output stream or array of streams.
  */
 function transform(opts, cb) {
   opts = opts || {};
