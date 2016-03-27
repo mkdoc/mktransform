@@ -5,7 +5,7 @@ var through = require('through3')
  *  Injects custom stream transform classes into the pipeline.
  *
  *  @function transform
- *  @param {Function|Object} opts processing options.
+ *  @param {Function|Array|Object} opts processing options.
  *  @param {Function} [cb] callback function.
  *
  *  @option {Array} transforms list of transform functions.

@@ -109,7 +109,7 @@ Injects custom stream transform classes into the pipeline.
 
 Returns an output stream.
 
-* `opts` Function|Object processing options.
+* `opts` Function|Array|Object processing options.
 * `cb` Function callback function.
 
 #### Options
