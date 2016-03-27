@@ -190,9 +190,9 @@ Returns an output stream.
 
 #### Throws
 
-* `if` TypeError the target is not a function.
-* `if` TypeError the return value is not a function.
-* `if` TypeError the stream instance has no pipe function.
+* `TypeError` if the target is not a function.
+* `TypeError` if the return value is not a function.
+* `TypeError` if the stream instance has no pipe function.
 
 ## License
 
