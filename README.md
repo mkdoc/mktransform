@@ -65,7 +65,7 @@ var tfm = require('mktransform')
   , upper = require('./upper');
 
 ast.src('# Project\n\nThis is a paragraph.\n\n## Install')
-  .pipe(tfm({transforms: [upper]}))
+  .pipe(tfm(upper))
   .pipe(ast.stringify({indent: 2}))
   .pipe(process.stdout);
 ```
@@ -109,7 +109,7 @@ Injects custom stream transform classes into the pipeline.
 
 Returns an output stream.
 
-* `opts` Object processing options.
+* `opts` Function|Object processing options.
 * `cb` Function callback function.
 
 #### Options

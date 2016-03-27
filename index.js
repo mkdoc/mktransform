@@ -5,7 +5,7 @@ var through = require('through3')
  *  Injects custom stream transform classes into the pipeline.
  *
  *  @function transform
- *  @param {Object} opts processing options.
+ *  @param {Function|Object} opts processing options.
  *  @param {Function} [cb] callback function.
  *
  *  @option {Array} transforms list of transform functions.
@@ -16,6 +16,16 @@ var through = require('through3')
  */
 function transform(opts, cb) {
   opts = opts || {};
+
+  if(typeof opts === 'function') {
+    opts = {
+      transforms: [opts]
+    } 
+  }else if(Array.isArray(opts)) {
+    opts = {
+      transforms: opts
+    } 
+  }
 
   var transforms = opts.transforms || []
     , func
@@ -60,7 +70,10 @@ function transform(opts, cb) {
   }
 
   if(!opts.input || !opts.output) {
-    return streams.length ? streams : undefined;
+    if(streams.length <= 1) {
+      return first;
+    }
+    return streams;
   }
 
   // set up input stream

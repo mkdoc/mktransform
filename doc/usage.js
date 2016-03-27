@@ -3,6 +3,6 @@ var tfm = require('../index')
   , upper = require('./upper');
 
 ast.src('# Project\n\nThis is a paragraph.\n\n## Install')
-  .pipe(tfm({transforms: [upper]}))
+  .pipe(tfm(upper))
   .pipe(ast.stringify({indent: 2}))
   .pipe(process.stdout);
