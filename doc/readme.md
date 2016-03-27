@@ -14,7 +14,11 @@ Accepts a list of functions that should return stream classes to be injected int
 
 ## Usage
 
-Create stream transform function(s) and pass in the `transforms` array:
+Create a file for the transform function like [upper.js](/doc/upper.js):
+
+<? @source {javascript} upper.js ?>
+
+And pass in the `transforms` array:
 
 <? @source {javascript=s/\.\.\/index/mktransform/gm} usage.js ?>
 

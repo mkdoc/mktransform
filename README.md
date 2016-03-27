@@ -30,12 +30,9 @@ For the command line interface install [mkdoc][] globally (`npm i -g mkdoc`).
 
 ## Usage
 
-Create stream transform function(s) and pass in the `transforms` array:
+Create a file for the transform function like [upper.js](https://github.com/mkdoc/mktransform/blob/master/doc/upper.js):
 
 ```javascript
-var tfm = require('mktransform')
-  , ast = require('mkast');
-
 // converts level one headings to upper case
 function upper(through, ast) {
   var Node = ast.Node
@@ -56,6 +53,16 @@ function upper(through, ast) {
   return through.transform(transform);
 }
 
+module.exports = upper;
+```
+
+And pass in the `transforms` array:
+
+```javascript
+var tfm = require('mktransform')
+  , ast = require('mkast')
+  , upper = require('./upper');
+
 ast.src('# Project\n\nThis is a paragraph.\n\n## Install')
   .pipe(tfm({transforms: [upper]}))
   .pipe(ast.stringify({indent: 2}))
@@ -64,10 +71,16 @@ ast.src('# Project\n\nThis is a paragraph.\n\n## Install')
 
 ## Example
 
+Run a custom stream transformation:
+
+```shell
+mkcat README.md | mktransform doc/upper.js | mkout
+```
+
 ## Help
 
 ```
-mktransform [options]
+mktransform [files...]
 
 Custom stream transformations.
 
