@@ -57,7 +57,7 @@ function upper(through, ast) {
 module.exports = upper;
 ```
 
-And pass in the `transforms` array:
+And pass in the transform function:
 
 ```javascript
 var tfm = require('mktransform')
