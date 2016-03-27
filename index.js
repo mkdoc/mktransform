@@ -15,17 +15,17 @@ var through = require('through3')
  *  @returns an output stream.
  */
 function transform(opts, cb) {
-
   opts = opts || {};
-  opts.input = opts.input;
-  opts.output = opts.output;
 
   var transforms = opts.transforms || []
     , func
     , Stream
+    , first
     , stream
     , previous
-    , i;
+    , i
+    , io = Boolean(opts.input && opts.output)
+    , streams = [];
 
   for(i = 0;i < transforms.length;i++) {
     func = transforms[i];
@@ -42,12 +42,17 @@ function transform(opts, cb) {
     }
 
     stream = new Stream(opts);
+    streams.push(stream);
+
+    if(!first) {
+      first = stream; 
+    }
 
     if(typeof stream.pipe !== 'function') {
       throw new TypeError('stream is missing pipe() method');
     }
 
-    if(previous) {
+    if(previous && !io) {
       previous.pipe(stream); 
     }
 
@@ -55,12 +60,16 @@ function transform(opts, cb) {
   }
 
   if(!opts.input || !opts.output) {
-    return stream; 
+    return first; 
   }
 
-  ast.parser(opts.input)
-    .pipe(stream)
-    .pipe(ast.stringify())
+  stream = ast.parser(opts.input);
+
+  for(i = 0;i < streams.length;i++) {
+    stream = stream.pipe(streams[i]); 
+  }
+  
+  stream.pipe(ast.stringify())
     .pipe(opts.output);
 
   if(cb) {
