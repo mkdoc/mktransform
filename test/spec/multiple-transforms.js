@@ -49,4 +49,14 @@ describe('mktransform:', function() {
     })
   });
 
+  it('should return array of streams', function(done) {
+    var opts = {
+        transforms: [upper1, upper2]
+      };
+    
+    var streams = mktransform(opts);
+    expect(streams).to.be.an('array').to.have.length(2);
+
+    done();
+  });
 });

@@ -60,7 +60,7 @@ function transform(opts, cb) {
   }
 
   if(!opts.input || !opts.output) {
-    return first; 
+    return streams.length ? streams : undefined;
   }
 
   // set up input stream
