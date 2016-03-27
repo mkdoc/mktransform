@@ -12,6 +12,10 @@ var through = require('through3')
  *  @option {Readable} [input] input stream.
  *  @option {Writable} [output] output stream.
  *
+ *  @throws {TypeError} if the target is not a function.
+ *  @throws {TypeError} if the return value is not a function.
+ *  @throws {TypeError} if the stream instance has no pipe function.
+ *
  *  @returns an output stream.
  */
 function transform(opts, cb) {

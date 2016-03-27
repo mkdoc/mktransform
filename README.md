@@ -188,6 +188,12 @@ Returns an output stream.
 * `input` Readable input stream.
 * `output` Writable output stream.
 
+#### Throws
+
+* `if` TypeError the target is not a function.
+* `if` TypeError the return value is not a function.
+* `if` TypeError the stream instance has no pipe function.
+
 ## License
 
 MIT
