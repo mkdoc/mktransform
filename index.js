@@ -25,7 +25,7 @@ var through = require('through3')
  *  When a single stream is being created it is returned otherwise an array 
  *  of all the created streams is returned.
  *
- *  If both the `input` and output `options` are given additional wrapper 
+ *  If both the `input` and `output` options are given additional wrapper 
  *  streams are created that parse JSON from the input stream and write JSON 
  *  to the output stream, in this instance you may pass a callback function 
  *  which is added as a listener for the `error` and `finish` events on the 
