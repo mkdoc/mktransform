@@ -57,31 +57,35 @@ function highlight(through, ast, opts) {
       })
 
       ps.once('close', function(code) {
+        var doc
+          , next;
         if(code === 0 && result.length) {
 
           // handle as html output
           if(out === 'html' || out === 'html-css') {
-            var doc = ast.parse('' + result);
+            doc = ast.parse('' + result);
 
             // remove the generated comment
             doc.firstChild.unlink();
 
             // add chunks to the stream
-            var next = doc.firstChild;
+            next = doc.firstChild;
 
             // rewrite the <pre> element to preserve an inner <code>
             // element with a class attribute, this is in keeping with 
             // how a code block is rendered by the default HTML renderer
             if(opts.preserve) {
-              var element = '<pre><code class="language-' + src + '">'
-              next.literal = next.literal.replace(/^<pre>/, element);
+              next.literal = next.literal.replace(
+                /^<pre>/, '<pre><code class="language-' + src + '">');
               next.literal = next.literal.replace(/<\/pre>/, '</code></pre>');
             }
 
+            // write the parsed HTML blocks to the stream
             while(next) {
               scope.push(next); 
               next = next.next;
             }
+
           // preserve as a code block
           }else{
             chunk.literal = '' + result;
