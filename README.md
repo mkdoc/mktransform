@@ -179,7 +179,8 @@ Usage: mkhigh [options]
 
 Options
   -o, --out=[VAL]         Set output format (default: html)
-  -s, --src=[LANG]        Source language overrides info string
+  -s, --src=[LANG]        Source language (overrides info string)
+  --alias-[NAME]=[VAL...] Alias info strings to source languages
   -l, --lines             Number lines in output
   -p, --preserve          Keep code elements
   -h, --help              Display help and exit
@@ -262,6 +263,7 @@ rewrite the output nodes to include the highlighted response.
 
 * `src` String source language, overrides info string.
 * `out` String output format.
+* `alias` Object map of info string languages to source languages.
 * `lines` Boolean number lines in highlighted output.
 * `preserve` Boolean Keep a `<code>` element in the result.
 
