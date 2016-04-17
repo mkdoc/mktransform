@@ -23,6 +23,7 @@ For the command line interface install [mkdoc][] globally (`npm i -g mkdoc`).
 - [Example](#example)
 - [Stream Functions](#stream-functions)
 - [Help](#help)
+  - [mkhigh](#mkhigh)
 - [API](#api)
   - [transform](#transform)
 - [License](#license)
@@ -165,7 +166,25 @@ Options
   -h, --help              Display help and exit
   --version               Print the version and exit
 
-mktransform@1.0.2
+mktransform@1.0.3
+```
+
+### mkhigh
+
+```
+Usage: mkhigh [options]
+
+  Highlight code blocks.
+
+Options
+  -o, --out=[VAL]         Set output format (default: html)
+  -s, --src=[LANG]        Source language overrides info string
+  -l                      Number lines in output
+  -p, --preserve          Keep code elements
+  -h, --help              Display help and exit
+  --version               Print the version and exit
+
+mktransform@1.0.3
 ```
 
 ## API
