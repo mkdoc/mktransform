@@ -26,6 +26,7 @@ For the command line interface install [mkdoc][] globally (`npm i -g mkdoc`).
   - [mkhigh](#mkhigh)
 - [API](#api)
   - [transform](#transform)
+  - [highlight](#highlight)
 - [License](#license)
 
 ---
@@ -243,6 +244,26 @@ Returns an output stream or array of streams.
 * `TypeError` if the target is not a function.
 * `TypeError` if the return value is not a function.
 * `TypeError` if the stream instance has no pipe function.
+
+### highlight
+
+```javascript
+highlight(through, ast, opts)
+```
+
+For each code block with an info string call source-highlight(1) and
+rewrite the output nodes to include the highlighted response.
+
+* `through` module for subclassing streams.
+* `ast` module for working with ast nodes.
+* `opts` options passed to the `transform` function.
+
+#### Options
+
+* `src` String source language, overrides info string.
+* `out` String output format.
+* `lines` Boolean number lines in highlighted output.
+* `preserve` Boolean Keep a <code> element in the result.
 
 ## License
 
