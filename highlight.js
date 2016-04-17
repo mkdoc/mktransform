@@ -13,6 +13,7 @@ var spawn = require('child_process').spawn
  *
  *  @option {String} src source language, overrides info string.
  *  @option {String} out output format.
+ *  @option {Object} alias map of info string languages to source languages.
  *  @option {Boolean} lines number lines in highlighted output.
  *  @option {Boolean} preserve Keep a `<code>` element in the result.
  */
@@ -23,16 +24,22 @@ function highlight(through, ast, opts) {
     var scope = this;
 
     if(Node.is(chunk, Node.CODE_BLOCK) && (opts.src || chunk.info)) {
-      var lang = chunk.info.split(/\s+/)[0]
+      var src = opts.src || chunk.info.split(/\s+/)[0]
         , literal = chunk.literal
         , out = opts.out || 'html'
-        , args = [
-            '--src-lang',
-            opts.src || lang,
-            '--out-format',
-            out
-          ]
+        , args
         , result = new Buffer(0);
+
+      if(!opts.src && opts.alias && opts.alias[src]) {
+        src = opts.alias[src];
+      }
+
+      args = [
+        '--src-lang',
+        src,
+        '--out-format',
+        out
+      ];
 
       // number source code lines
       if(opts.lines) {
@@ -59,7 +66,7 @@ function highlight(through, ast, opts) {
             // add chunks to the stream
             var next = doc.firstChild;
             if(opts.preserve) {
-              var element = '<pre><code class="language-' + lang + '">'
+              var element = '<pre><code class="language-' + src + '">'
               next.literal = next.literal.replace(/^<pre>/, element);
               next.literal = next.literal.replace(/<\/pre>/, '</code></pre>');
             }
