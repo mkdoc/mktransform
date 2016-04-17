@@ -167,7 +167,7 @@ Options
   -h, --help              Display help and exit
   --version               Print the version and exit
 
-mktransform@1.0.3
+mktransform@1.0.4
 ```
 
 ### mkhigh
@@ -180,12 +180,12 @@ Usage: mkhigh [options]
 Options
   -o, --out=[VAL]         Set output format (default: html)
   -s, --src=[LANG]        Source language overrides info string
-  -l                      Number lines in output
+  -l, --lines             Number lines in output
   -p, --preserve          Keep code elements
   -h, --help              Display help and exit
   --version               Print the version and exit
 
-mktransform@1.0.3
+mktransform@1.0.4
 ```
 
 ## API
