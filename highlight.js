@@ -30,6 +30,7 @@ function highlight(through, ast, opts) {
         , args
         , result = new Buffer(0);
 
+      // lookup source language aliases when available
       if(!opts.src && opts.alias && opts.alias[src]) {
         src = opts.alias[src];
       }
@@ -49,6 +50,7 @@ function highlight(through, ast, opts) {
 
       var ps = spawn(COMMAND, args);
 
+      // get response data from the process
       ps.stdout.on('data', function(data) {
         result = Buffer.concat(
           [result, data], result.length + data.length);
@@ -57,6 +59,7 @@ function highlight(through, ast, opts) {
       ps.once('close', function(code) {
         if(code === 0 && result.length) {
 
+          // handle as html output
           if(out === 'html' || out === 'html-css') {
             var doc = ast.parse('' + result);
 
@@ -71,12 +74,10 @@ function highlight(through, ast, opts) {
               next.literal = next.literal.replace(/<\/pre>/, '</code></pre>');
             }
             while(next) {
-              //console.error(next.literal)
               scope.push(next); 
               next = next.next;
             }
-          //}else if(out === 'esc') {
-
+          // preserve as a code block
           }else{
             chunk.literal = '' + result;
             scope.push(chunk);
@@ -88,6 +89,7 @@ function highlight(through, ast, opts) {
         }
       })
 
+      // write the code block data to the process
       ps.stdin.end(literal);
     }else{
       cb(null, chunk);
