@@ -3,10 +3,10 @@
 A stream function has the signature:
 
 ```javascript
-function(through, ast)
+function(through, ast, opts)
 ```
 
-It is passed the [through][] module so you can easily create stream transform classes and [ast][mkast] so you may easily inspect nodes. The function **must** return a transform stream subclass.
+It is passed the [through][] module so you can easily create stream transform classes and [ast][mkast] so you may easily inspect nodes; the `opts` object is the original options object. The function **must** return a transform stream subclass.
 
 The input and output data should always be abstract syntax tree nodes.
 

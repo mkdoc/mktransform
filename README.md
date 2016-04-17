@@ -24,7 +24,7 @@ For the command line interface install [mkdoc][] globally (`npm i -g mkdoc`).
 - [Stream Functions](#stream-functions)
 - [Help](#help)
 - [API](#api)
-   - [transform](#transform)
+  - [transform](#transform)
 - [License](#license)
 
 ---
@@ -90,10 +90,10 @@ mkcat README.md | mktransform test/fixtures/upper1.js test/fixtures/upper2.js | 
 A stream function has the signature:
 
 ```javascript
-function(through, ast)
+function(through, ast, opts)
 ```
 
-It is passed the [through][] module so you can easily create stream transform classes and [ast][mkast] so you may easily inspect nodes. The function **must** return a transform stream subclass.
+It is passed the [through][] module so you can easily create stream transform classes and [ast][mkast] so you may easily inspect nodes; the `opts` object is the original options object. The function **must** return a transform stream subclass.
 
 The input and output data should always be abstract syntax tree nodes.
 
@@ -157,14 +157,15 @@ See [through][through], [ast][mkast] and the [api docs](#api) for more detail.
 ## Help
 
 ```
-mktransform [files...]
+Usage: mktransform [files...]
 
-Custom stream transformations.
+  Custom stream transformations.
 
-  -h, --help  Display this help and exit
-  --version   Print the version and exit
+Options
+  -h, --help              Display help and exit
+  --version               Print the version and exit
 
-Report bugs to https://github.com/mkdoc/mktransform/issues
+mktransform@1.0.2
 ```
 
 ## API
@@ -183,11 +184,14 @@ Accepts a single function, array of functions or an object with a
 Functions have the signature:
 
 ```javascript
-function(through, ast)
+function(through, ast, opts)
 ```
 
 They are passed the [through][] and [ast][mkast] modules to help with
-creating stream subclasses and inspecting nodes.
+creating stream subclasses and inspecting nodes and the original options.
+
+If you are using multiple stream transformations the options are shared
+between them so take care to avoid name collisions.
 
 Each function **must** return a transform stream subclass.
 
@@ -227,7 +231,7 @@ MIT
 
 ---
 
-Created by [mkdoc](https://github.com/mkdoc/mkdoc) on March 27, 2016
+Created by [mkdoc](https://github.com/mkdoc/mkdoc) on April 17, 2016
 
 [mkdoc]: https://github.com/mkdoc/mkdoc
 [mkast]: https://github.com/mkdoc/mkast

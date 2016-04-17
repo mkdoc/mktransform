@@ -10,11 +10,14 @@ var through = require('through3')
  *  Functions have the signature:
  *
  *  ```javascript
- *  function(through, ast)
+ *  function(through, ast, opts)
  *  ```
  *
  *  They are passed the [through][] and [ast][mkast] modules to help with 
- *  creating stream subclasses and inspecting nodes.
+ *  creating stream subclasses and inspecting nodes and the original options.
+ *
+ *  If you are using multiple stream transformations the options are shared 
+ *  between them so take care to avoid name collisions.
  *
  *  Each function **must** return a transform stream subclass.
  *
@@ -75,7 +78,7 @@ function transform(opts, cb) {
       throw new TypeError('transform function expected');
     }
 
-    Stream = func(through, ast);
+    Stream = func(through, ast, opts);
 
     if(typeof Stream !== 'function') {
       throw new TypeError(
