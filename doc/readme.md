@@ -6,6 +6,8 @@
 
 Accepts a list of functions that should return stream classes to be injected into the transformation pipeline.
 
+The [highlight](/highlight.js) transform implementation serves as a good example; it highlights code blocks with info strings and rewrites the document stream.
+
 <? @include {=readme} install.md ?>
 
 ***
