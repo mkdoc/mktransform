@@ -59,7 +59,8 @@ function highlight(through, ast, opts) {
       ps.once('close', function(code) {
         var doc
           , next;
-        if(code === 0 && result.length) {
+
+        if(code === 0) {
 
           // handle as html output
           if(out === 'html' || out === 'html-css') {
@@ -100,6 +101,8 @@ function highlight(through, ast, opts) {
 
       // write the code block data to the process
       ps.stdin.end(literal);
+
+    // pass through on non-zero exit code
     }else{
       cb(null, chunk);
     }
