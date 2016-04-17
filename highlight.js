@@ -14,7 +14,7 @@ var spawn = require('child_process').spawn
  *  @option {String} src source language, overrides info string.
  *  @option {String} out output format.
  *  @option {Boolean} lines number lines in highlighted output.
- *  @option {Boolean} preserve Keep a <code> element in the result.
+ *  @option {Boolean} preserve Keep a `<code>` element in the result.
  */
 function highlight(through, ast, opts) {
   var Node = ast.Node;

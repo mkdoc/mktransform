@@ -263,7 +263,7 @@ rewrite the output nodes to include the highlighted response.
 * `src` String source language, overrides info string.
 * `out` String output format.
 * `lines` Boolean number lines in highlighted output.
-* `preserve` Boolean Keep a <code> element in the result.
+* `preserve` Boolean Keep a `<code>` element in the result.
 
 ## License
 
