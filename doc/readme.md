@@ -16,5 +16,5 @@ The [highlight](/highlight.js) transform implementation serves as a good example
 
 <? @include {=readme} usage.md example.md stream-functions.md help.md ?>
 
-<? @exec mkapi index.js highlight.js --title=API --level=2 ?>
+<? @exec mkapi index.js --title=API --level=2 ?>
 <? @include {=readme} license.md links.md ?>

@@ -25,10 +25,8 @@ For the command line interface install [mkdoc][] globally (`npm i -g mkdoc`).
 - [Example](#example)
 - [Stream Functions](#stream-functions)
 - [Help](#help)
-  - [mkhigh](#mkhigh)
 - [API](#api)
   - [transform](#transform)
-  - [highlight](#highlight)
 - [License](#license)
 
 ---
@@ -172,25 +170,6 @@ Options
 mktransform@1.0.4
 ```
 
-### mkhigh
-
-```
-Usage: mkhigh [options]
-
-  Highlight code blocks.
-
-Options
-  -o, --out=[VAL]         Set output format (default: html)
-  -s, --src=[LANG]        Source language (overrides info string)
-  --alias-[NAME]=[VAL...] Alias info strings to source languages
-  -l, --lines             Number lines in output
-  -p, --preserve          Keep code elements
-  -h, --help              Display help and exit
-  --version               Print the version and exit
-
-mktransform@1.0.4
-```
-
 ## API
 
 ### transform
@@ -248,34 +227,13 @@ Returns an output stream or array of streams.
 * `TypeError` if the return value is not a function.
 * `TypeError` if the stream instance has no pipe function.
 
-### highlight
-
-```javascript
-highlight(through, ast, opts)
-```
-
-For each code block with an info string call source-highlight(1) and
-rewrite the output nodes to include the highlighted response.
-
-* `through` module for subclassing streams.
-* `ast` module for working with ast nodes.
-* `opts` options passed to the `transform` function.
-
-#### Options
-
-* `src` String source language, overrides info string.
-* `out` String output format.
-* `alias` Object map of info string languages to source languages.
-* `lines` Boolean number lines in highlighted output.
-* `preserve` Boolean Keep a `<code>` element in the result.
-
 ## License
 
 MIT
 
 ---
 
-Created by [mkdoc](https://github.com/mkdoc/mkdoc) on April 17, 2016
+Created by [mkdoc](https://github.com/mkdoc/mkdoc) on April 18, 2016
 
 [mkdoc]: https://github.com/mkdoc/mkdoc
 [mkast]: https://github.com/mkdoc/mkast
