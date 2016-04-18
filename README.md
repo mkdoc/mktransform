@@ -8,7 +8,7 @@
 
 Accepts a list of functions that should return stream classes to be injected into the transformation pipeline.
 
-The [highlight](https://github.com/mkdoc/mktransform/blob/master/highlight.js) transform implementation serves as a good example; it highlights code blocks with info strings and rewrites the document stream.
+The [highlight][mkhighlight] transform implementation serves as a good example; it highlights code blocks with info strings and rewrites the document stream.
 
 ## Install
 
@@ -167,7 +167,7 @@ Options
   -h, --help              Display help and exit
   --version               Print the version and exit
 
-mktransform@1.0.4
+mktransform@1.0.5
 ```
 
 ## API
@@ -237,6 +237,7 @@ Created by [mkdoc](https://github.com/mkdoc/mkdoc) on April 18, 2016
 
 [mkdoc]: https://github.com/mkdoc/mkdoc
 [mkast]: https://github.com/mkdoc/mkast
+[mkhighlight]: https://github.com/mkdoc/mkhighlight
 [through]: https://github.com/tmpfs/through3
 [commonmark]: http://commonmark.org
 [jshint]: http://jshint.com
