@@ -4,7 +4,7 @@ var through = require('through3')
 /**
  *  Injects custom stream transform classes into the pipeline.
  *
- *  Accepts a single function, array of functions or an object with a 
+ *  Accepts a single function, array of functions or an object with a
  *  `transforms` array.
  *
  *  Functions have the signature:
@@ -13,25 +13,25 @@ var through = require('through3')
  *  function(through, ast, opts)
  *  ```
  *
- *  They are passed the [through][] and [ast][mkast] modules to help with 
+ *  They are passed the [through][] and [ast][mkast] modules to help with
  *  creating stream subclasses and inspecting nodes and the original options.
  *
- *  If you are using multiple stream transformations the options are shared 
+ *  If you are using multiple stream transformations the options are shared
  *  between them so take care to avoid name collisions.
  *
  *  Each function **must** return a transform stream subclass.
  *
- *  The returned subclass is instantiated and when multiple transform functions 
- *  are being used a pipeline is created between the streams in the order 
+ *  The returned subclass is instantiated and when multiple transform functions
+ *  are being used a pipeline is created between the streams in the order
  *  supplied.
  *
- *  When a single stream is being created it is returned otherwise an array 
+ *  When a single stream is being created it is returned otherwise an array
  *  of all the created streams is returned.
  *
- *  If both the `input` and `output` options are given additional wrapper 
- *  streams are created that parse JSON from the input stream and write JSON 
- *  to the output stream, in this instance you may pass a callback function 
- *  which is added as a listener for the `error` and `finish` events on the 
+ *  If both the `input` and `output` options are given additional wrapper
+ *  streams are created that parse JSON from the input stream and write JSON
+ *  to the output stream, in this instance you may pass a callback function
+ *  which is added as a listener for the `error` and `finish` events on the
  *  output stream; the output stream is returned.
  *
  *  @function transform
@@ -54,11 +54,11 @@ function transform(opts, cb) {
   if(typeof opts === 'function') {
     opts = {
       transforms: [opts]
-    } 
+    }
   }else if(Array.isArray(opts)) {
     opts = {
       transforms: opts
-    } 
+    }
   }
 
   var transforms = opts.transforms || []
@@ -89,7 +89,7 @@ function transform(opts, cb) {
     streams.push(stream);
 
     if(!first) {
-      first = stream; 
+      first = stream;
     }
 
     if(typeof stream.pipe !== 'function') {
@@ -97,7 +97,7 @@ function transform(opts, cb) {
     }
 
     if(previous && !io) {
-      previous.pipe(stream); 
+      previous.pipe(stream);
     }
 
     previous = stream;
@@ -107,7 +107,7 @@ function transform(opts, cb) {
     if(streams.length <= 1) {
       return first;
     }
-    return streams;
+    return stream;
   }
 
   // set up input stream
@@ -115,9 +115,9 @@ function transform(opts, cb) {
 
   // inject custom stream transformations
   for(i = 0;i < streams.length;i++) {
-    stream = stream.pipe(streams[i]); 
+    stream = stream.pipe(streams[i]);
   }
- 
+
   // set up output stream
   stream
     .pipe(ast.stringify())

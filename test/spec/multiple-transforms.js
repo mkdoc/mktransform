@@ -22,7 +22,7 @@ function assert(result) {
 }
 
 describe('mktransform:', function() {
-  
+
   it('should transform with multiple streams', function(done) {
     var source = 'test/fixtures/headings.md'
       , target = 'target/headings.json.log'
@@ -39,7 +39,7 @@ describe('mktransform:', function() {
           output: output,
           transforms: [upper1, upper2]
         };
-    
+
     mktransform(opts);
 
     output.once('finish', function() {
@@ -53,9 +53,10 @@ describe('mktransform:', function() {
     var opts = {
         transforms: [upper1, upper2]
       };
-    
-    var streams = mktransform(opts);
-    expect(streams).to.be.an('array').to.have.length(2);
+
+    var stream = mktransform(opts);
+    expect(stream).to.be.an('object')
+    //expect(streams).to.be.an('array').to.have.length(2);
 
     done();
   });
